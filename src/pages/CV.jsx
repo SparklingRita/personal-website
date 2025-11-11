@@ -4,6 +4,8 @@ import { faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faCalendar, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { ProfilePic } from '../components/Hero'
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import CVDocument from './CVDocument';
 
 function CVContacts() {
     return (
@@ -63,7 +65,7 @@ function Level({level}) {
 
 function Skills() {
     return (
-    <div className='skills-container'>
+    <div className='cv-skills-container'>
         <ul>
             <i>Programming</i>
             <li>Python <Level level={5}/></li>
@@ -84,7 +86,7 @@ function Skills() {
 
 function Languages() {
     return(
-        <div className='languages-container'>
+        <div className='cv-languages-container'>
             <ul>
                 <li>Portuguese</li>
                 <li>English</li>
@@ -105,7 +107,7 @@ function AboutMe(){
 
 function Extra() {
     return (
-        <div className='extra-container'>
+        <div className='cv-extra-container'>
             <ul>
                 <li>Advent of Code Participant</li>
                 <li>Member of HackerSchool student group at IST</li>
@@ -118,7 +120,7 @@ function Extra() {
 
 function Entry( {date, location, title, description} ){
     return(
-        <div className='entry-item'>
+        <div className='cv-entry-item'>
             <h2>
                 {title}  
             </h2>
@@ -141,11 +143,9 @@ function Entry( {date, location, title, description} ){
 export default function CV() {
   return (
     <>
-    <div>
-        <button onClick={downloadPDF()}>PDF</button>
-    </div>
-    <div className='container'>
-        <div className='left'>
+    
+    <div className='cv-container'>
+        <div className='cv-left'>
             <ProfilePic className={'profile-pic-cv'}/>
             <div>
                 Rita Mendes
@@ -154,23 +154,23 @@ export default function CV() {
                 <h2>Contacts</h2>
                 <CVContacts/>
             </div>
-            <div className='skills-wrapper'>
+            <div className='cv-skills-wrapper'>
                 <h2>Skills</h2>
                 <Skills/>
             </div>
-            <div className='languages-wrapper'>
+            <div className='cv-languages-wrapper'>
                 <h2>Languages</h2>
                 <Languages/>
             </div>
                      
             <footer>Last updated in November 2025.</footer>
         </div>
-        <div className='right'>
-            <div className='about-me'>
+        <div className='cv-right'>
+            <div className='cv-about-me'>
                 <h1>About Me</h1>
                 <AboutMe/>
             </div>
-            <div className='education-wrapper'>
+            <div className='cv-education-wrapper'>
                 <h1>Education</h1>
                 <Entry
                     date="2020-2023"
@@ -191,7 +191,7 @@ export default function CV() {
                     description="Minor in Computer Science"
                 />
             </div>
-            <div className='experience-wrapper'>
+            <div className='cv-experience-wrapper'>
                 <h1>Experience</h1>
                 <Entry
                     date="2020-Present"
@@ -200,12 +200,19 @@ export default function CV() {
                     description="Managed customer orders, inventory tracking, and sales records using Excel and internal systems. Developed organizational skills in a retail enviroment, providing customer service and ensuring smooth day-to-day operations."
                 />
             </div>
-            <div className='extra-wrapper'>
+            <div className='cv-extra-wrapper'>
                 <h1>Extra Curriculars</h1>
                 <Extra/>
             </div>
         </div>
         
+    </div>
+    <div>
+    <PDFDownloadLink document={<CVDocument />} fileName="somename.pdf">
+      {({ blob, url, loading, error }) =>
+        loading ? 'Loading document...' : 'Download now!'
+      }
+    </PDFDownloadLink>
     </div>
     </>
   );

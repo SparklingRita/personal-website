@@ -4,7 +4,7 @@ h1 {
     margin: 20px 20px;          /* optional: remove default spacing */
 }
 
-.container {
+.cv-container {
     height: 100%;
     width: 70%;
     background-color: #0d1033;
@@ -13,22 +13,22 @@ h1 {
     grid-template-columns: 30% 70%;
 }
 
-.left {
+.cv-left {
     background-color:rgb(54, 27, 54) ;
     height: 100%;
 }
 
-.left h2 {
+.cv-left h2 {
     display: flex;
     align-items: center;
 }
 
-.right h1 {
+.cv-right h1 {
     display: flex;
     align-items: center;
 }
 
-.left h2::after {
+.cv-left h2::after {
     content: '';
     flex-grow: 1;          /* fills remaining space */
     height: 2px;
@@ -36,7 +36,7 @@ h1 {
     margin-left: 10px;     /* space between text and line */
 }
 
-.right h1::after {
+.cv-right h1::after {
     content: '';
     flex-grow: 1;          /* fills remaining space */
     height: 2px;
@@ -44,7 +44,7 @@ h1 {
     margin-left: 10px;     /* space between text and line */
 }
 
-.about-me {
+.cv-about-me {
     text-align: justify;
 }
 
@@ -52,21 +52,21 @@ h1 {
     margin: 0 20px;
 }
 
-.skills-wrapper {
+.cv-skills-wrapper {
     margin: 0 20px;
 }
 
-.skills-container {
+.cv-skills-container {
     text-align: left;
 }
 
-.skills-container ul {
+.cv-skills-container ul {
     list-style: none;   
     margin: 0;          
     padding: 0;        
 }
 
-.skills-container li {
+.cv-skills-container li {
     display: flex;
     margin:0;
     padding:0;
@@ -76,27 +76,27 @@ h1 {
     margin-right: 90px;
 }
 
-.languages-container {
+.cv-languages-container {
     text-align: left;
 }
 
-.languages-wrapper {
+.cv-languages-wrapper {
     margin: 0 20px;
 }
 
-.languages-wrapper ul {
+.cv-languages-wrapper ul {
     list-style: none;   
     margin: 0;          
     padding: 0;   
 }
 
-.extra-container ul {
+.cv-extra-container ul {
     list-style: none;   
     margin: 0;          
     padding: 0;
 }
 
-.extra-container {
+.cv-extra-container {
     text-align: left;
     margin: 0 20px;
 }
@@ -118,11 +118,11 @@ h1 {
     object-fit: cover;
 }
 
-.entry-item {
+.cv-entry-item {
     text-align: left;
     padding: 0 20px;
 }
 
-.education-item h2 {
+.cv-education-item h2 {
     font-weight: bold;
 }

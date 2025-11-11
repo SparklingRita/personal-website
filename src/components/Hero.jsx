@@ -1,4 +1,4 @@
-import profileImage from "../assets/profile.jpg"; 
+import profileImage from "../../public/profile.jpg"; 
 import './Hero.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
