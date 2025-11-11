@@ -52,7 +52,7 @@ export const cvData = {
       description: [
           {
             text: 'Awarded Academic Merit Diploma (2022/2023).',
-            link: 'https://example.com/diploma.pdf' 
+            link: '../../public/certificates/AcademicMeritIST_2022-2023.pdf'
           },
       ],
     },
