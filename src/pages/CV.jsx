@@ -2,39 +2,42 @@ import './CV.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
-import { faCalendar, faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { faCalendar, faLocationDot, faDownload } from '@fortawesome/free-solid-svg-icons';
 import { ProfilePic } from '../components/Hero'
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import CVDocument from './CVDocument';
+import { cvData } from './cvData';
+import { href } from 'react-router-dom';
+
 
 function CVContacts() {
     return (
         <div className='cv-contacts-container'>
-            <a href="https://ritacmendes.com" target="_blank">
+            <a href={cvData.contacts.websiteLink} target="_blank" rel="noopener noreferrer">
                 <div>
-                    <FontAwesomeIcon icon={faGlobe} />
-                    <span>ritacmendes.com</span>   
+                    <FontAwesomeIcon style={{color:'var(--cv-accent)'}} icon={faGlobe} />
+                    <span>{cvData.contacts.website}</span>   
                 </div>
             </a>
 
-            <a href="mailto:me@ritacmendes.com" target="_blank">
+            <a href={cvData.contacts.emailLink} target="_blank" rel="noopener noreferrer">
                 <div>
-                    <FontAwesomeIcon icon={faEnvelope} />
-                    <span>me@ritacmendes.com</span>   
+                    <FontAwesomeIcon style={{color:'var(--cv-accent)'}} icon={faEnvelope} />
+                    <span>{cvData.contacts.email}</span>   
                 </div>
             </a>
             
-            <a href="https://github.com/SparklingRita" target="_blank">
+            <a href={cvData.contacts.githubLink} target="_blank" rel="noopener noreferrer">
                 <div>
-                    <FontAwesomeIcon icon={faGithub} />
-                    <span>@SparklingRita</span>   
+                    <FontAwesomeIcon style={{color:'var(--cv-accent)'}} icon={faGithub} />
+                    <span>{cvData.contacts.github}</span>   
                 </div>
             </a>
 
-            <a href="https://LinkedIn.com/" target="_blank">
+            <a href={cvData.contacts.linkedinLink} target="_blank" rel="noopener noreferrer">
                 <div>
-                    <FontAwesomeIcon icon={faLinkedin} />
-                    <span>@LinkedIn</span>   
+                    <FontAwesomeIcon style={{color:'var(--cv-accent)'}} icon={faLinkedin} />
+                    <span>{cvData.contacts.linkedin}</span>   
                 </div>
             </a>
         </div>
@@ -46,7 +49,7 @@ function Level({level}) {
     const dots = [];
 
     for (let i=0; i < maxLevel; i++) {
-        const color = i < level ? 'red' : 'white';
+        const color = i < level ? 'var(--cv-accent)' : 'var(--cv-secondary)';
         dots.push(
             <div 
             key={i}
@@ -64,43 +67,48 @@ function Level({level}) {
 }
 
 function Skills() {
+    const { skills } = cvData;
     return (
     <div className='cv-skills-container'>
         <ul>
-            <i>Programming</i>
-            <li>Python <Level level={5}/></li>
-            <li>Excel <Level level={5}/></li>
-            <li>HTML/CSS <Level level={4}/></li>
-            <li>Matlab <Level level={4}/></li>
-            <li>Arduino <Level level={4}/></li>
-            <li>React <Level level={4}/></li>
-            <li>C <Level level={3}/></li>
-            <i>Other</i>
-            <li>Git <Level level={4}/></li>
-            <li>Windows <Level level={5}/></li>
-            <li>Linux <Level level={4}/></li>
+            <li style={{color:'var(--cv-secondary)', fontWeight:'100'}}>Programming</li>
+            {skills.programming.map((s, i) => (
+            <li key={`prog-${i}`}>
+                {s.name} <Level level={s.level} />
+            </li>
+            ))}
+
+            <li style={{marginTop:'15px', color:'var(--cv-secondary)', fontWeight:'100'}}>Other</li>
+            {skills.other.map((s, i) => (
+            <li key={`other-${i}`}>
+                {s.name} <Level level={s.level} />
+            </li>
+            ))}
         </ul>
     </div>
     )
 }
 
 function Languages() {
+    const { languages }  = cvData;
     return(
-        <div className='cv-languages-container'>
-            <ul>
-                <li>Portuguese</li>
-                <li>English</li>
-            </ul>
-        </div>
+        <ul>
+            {
+                languages.map((lang, i) => (
+                    <li key={i}>
+                        <span>{lang.lang}</span>
+                        <span>{lang.level}</span>
+                    </li>
+                ))
+            }
+        </ul>
     )
 }
 
 function AboutMe(){
     return (
-        <div>
-            Master in Electrical and Computer Engineering at Instituto Superior Técnico, specializing in Control, Robotics, and AI.
-            My main professional interest lies in Machine Learning and Web Development, and I'm eager to continue learning and growing in these fields.
-            Beyond engineering, I am a hybrid athlete and have a strong passion for the arts, including traditional drawing, playing guitar and also video editing, with extensive experience in Adobe Photoshop, Lightroom, Premiere Pro, and DaVinci Resolve.
+        <div style={{textAlign:'justify', margin:'10px 20px', color:'var(----cv-secondary)'}}>
+            {cvData.aboutMe}
         </div>
     )
 }
@@ -109,10 +117,11 @@ function Extra() {
     return (
         <div className='cv-extra-container'>
             <ul>
-                <li>Advent of Code Participant</li>
-                <li>Member of HackerSchool student group at IST</li>
-                <li>Mentor at IST Erasmus Mentoring Programme</li>
-                <li>Many small coding projects</li>
+                {
+                    cvData.extra.map((e,i) => (
+                        <li>{e}</li>
+                    ))
+                }
             </ul>
         </div>
     )
@@ -125,12 +134,16 @@ function Entry( {date, location, title, description} ){
                 {title}  
             </h2>
             <div>
-                <FontAwesomeIcon icon={faCalendar}/>
-                {date}  
+                <FontAwesomeIcon style={{color:'var(--cv-accent)'}} icon={faCalendar}/>
+                <span style={{color:'var(--cv-main)'}}>
+                    {date}  
+                </span>
             </div>
             <div>
-                <FontAwesomeIcon icon={faLocationDot}/>
-                {location}  
+                <FontAwesomeIcon style={{color:'var(--cv-accent)'}} icon={faLocationDot}/>
+                <span style={{color:'var(--cv-main)'}}>
+                    {location}  
+                </span>
             </div>
             <p>
                 {description}
@@ -143,76 +156,86 @@ function Entry( {date, location, title, description} ){
 export default function CV() {
   return (
     <>
-    
-    <div className='cv-container'>
-        <div className='cv-left'>
-            <ProfilePic className={'profile-pic-cv'}/>
-            <div>
-                Rita Mendes
-            </div>
-            <div className='cv-contacts-wrapper'>
-                <h2>Contacts</h2>
-                <CVContacts/>
-            </div>
-            <div className='cv-skills-wrapper'>
-                <h2>Skills</h2>
-                <Skills/>
-            </div>
-            <div className='cv-languages-wrapper'>
-                <h2>Languages</h2>
-                <Languages/>
-            </div>
-                     
-            <footer>Last updated in November 2025.</footer>
-        </div>
-        <div className='cv-right'>
-            <div className='cv-about-me'>
-                <h1>About Me</h1>
-                <AboutMe/>
-            </div>
-            <div className='cv-education-wrapper'>
-                <h1>Education</h1>
-                <Entry
-                    date="2020-2023"
-                    location="Instituto Superior Técnico, Lisbon, Portugal"
-                    title="Bachelor's in Electrical and Computer Engineering"
-                    description="Final Average: 14.21 Focused on signal processing, robotics, and embedded systems."
-                />
-                <Entry
-                    date="2024-2025, 1st semester"
-                    location="KTH Royal Institute of Technology, Stockholm, Sweden"
-                    title="Erasmus Programme"
-                    description="Focused on Robotics and Machine Learning."
-                />
-                <Entry
-                    date="2023-2025 (expected)"
-                    location="Instituto Superior Técnico, Lisbon, Portugal"
-                    title="Master's in Control, Robotics and Artificial Intelligence"
-                    description="Minor in Computer Science"
-                />
-            </div>
-            <div className='cv-experience-wrapper'>
-                <h1>Experience</h1>
-                <Entry
-                    date="2020-Present"
-                    location="Livraria e Papelaria Espaço"
-                    title="Sales and Operations Assistant"
-                    description="Managed customer orders, inventory tracking, and sales records using Excel and internal systems. Developed organizational skills in a retail enviroment, providing customer service and ensuring smooth day-to-day operations."
-                />
-            </div>
-            <div className='cv-extra-wrapper'>
-                <h1>Extra Curriculars</h1>
-                <Extra/>
-            </div>
+    <div className='full-container'>
+        <div className='cv-top-buttons'>
+            <>
+                <PDFDownloadLink document={<CVDocument />} fileName="RitaMendesCV.pdf">
+                {
+                    <div>
+                        <FontAwesomeIcon icon={faDownload}/>
+                        <span>Download PDF</span>
+                    </div>
+                }
+                </PDFDownloadLink>
+            </>
+            <a href='https://github.com/SparklingRita/personal-website/tree/main/src/pages' target="_blank" rel="noopener noreferrer">
+                <div>
+                <FontAwesomeIcon icon={faGithub}/>
+                <span>Source Code</span>
+                </div>
+            </a>        
         </div>
         
-    </div>
-    <div>
-    <PDFDownloadLink document={<CVDocument />} fileName="somename.pdf">
-      {({ blob, url, loading, error }) =>
-        loading ? 'Loading document...' : 'Download now!'
-      }
-    </PDFDownloadLink>
+        <div className='cv-container'>
+            <div className='cv-left'>
+                <ProfilePic className={'profile-pic-cv'}/>
+                <div>
+                    <h2 style={{justifyContent:'center', marginBottom:'0px', marginTop:0, paddingTop:0}}>{cvData.name}</h2>
+                    <div style={{gap:'3px', display:'inline-block', marginBottom:'10px'}}>
+                        <FontAwesomeIcon style={{color:'var(--cv-accent)'}} icon={faLocationDot}/>
+                        {cvData.location.city}, {cvData.location.country}
+                    </div>  
+                </div>
+                <div className='cv-contacts-wrapper'>
+                    <h2>Contacts</h2>
+                    <CVContacts/>
+                </div>
+                <div className='cv-skills-wrapper'>
+                    <h2>Skills</h2>
+                    <Skills/>
+                </div>
+                <div className='cv-languages-wrapper'>
+                    <h2>Languages</h2>
+                    <Languages/>
+                </div>
+                        
+                <div className='footer'>
+                    Last updated in {cvData.lastUpdated.month} {cvData.lastUpdated.year}.
+                </div>
+            </div>
+            <div className='cv-right'>
+                
+                <div className='cv-about-me'>
+                    <h1>About Me</h1>
+                    <AboutMe/>
+                </div>
+                <div className='cv-education-wrapper'>
+                    <h1>Education</h1>
+                    {
+                        cvData.education.map((e,i)=>(
+                            <div>
+                                <Entry date={e.date} location={e.location} title={e.title} description={e.description} />
+                            </div>
+                        ))
+                    }
+                </div>
+                <div className='cv-experience-wrapper'>
+                    <h1>Experience</h1>
+                    {
+                        cvData.experience.map((e, i) => (
+                            <div>
+                                <Entry date={e.date} location={e.location} title={e.title} description={e.description}/>
+                            </div>
+                        ))
+                    }
+                </div>
+                <div className='cv-extra-wrapper'>
+                    <h1>Extra</h1>
+                    <Extra/>
+                </div>
+            </div>
+            
+        </div>
     </div>
     </>
   );

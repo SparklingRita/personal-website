@@ -36,14 +36,14 @@ export default function Navbar( {setMainColor, defaultColor} ) {
     <>
     <nav className="nav-container">
         <ul>
-            <li className='nav-entry'>
+            <div className='nav-entry'>
                 <FontAwesomeIcon icon={faRainbow} ref={buttonRef} onClick={() => {
                     if (colorPicker) {
                         setMainColor(defaultColor);
                     }
                     setColorPicker(prev => !prev)}}
                 />       
-            </li>
+            </div>
         </ul>
         {colorPicker && (
             <div ref={pickerRef}>

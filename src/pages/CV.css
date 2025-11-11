@@ -1,26 +1,118 @@
+/* Regular */
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../public/fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../public/fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* Light */
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../public/fonts/Roboto-Light.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+
+:root {
+    --cv-font: 'Roboto', sans-serif;
+    --cv-font-regular: 400;
+    --cv-font-bold: 700;
+    --cv-font-light: 100;
+
+    --cv-bg-right: #17172cc4;        /* background */
+    --cv-bg-left: #3b3e52b3;        /* background */
+    --cv-main: #ffffff;      /* main text */
+    --cv-secondary: #cacacab9;     /* secondary text */
+    --cv-accent: #6ca7f5;    /* icons, highlights */
+}
+
 h1 {
     font-size: 2em;  /* 50% larger than normal text */
-    font-weight: bold;
-    margin: 20px 20px;          /* optional: remove default spacing */
+    font-weight: var(--cv-font-bold);
+    margin: 10px 20px;          /* optional: remove default spacing */
+    color: var(--cv-main);
+}
+
+h2 {
+    color: var(--cv-main);
+    margin-bottom: 10px;
+    font-weight: var(--cv-font-bold);
+}
+
+.full-container {
+    margin-top: 60px; 
+    width: 60%;
+}
+
+.cv-top-buttons {
+  display: flex;
+  justify-content: flex-end; /* aligns items to the right */
+}
+
+.cv-top-buttons div {
+  display: flex;
+  align-items: center;
+  background-color: rgba(202, 202, 202, 0.278);
+  padding: 5px 10px;
+  margin: 5px 5px;
+  border-radius: 25px;
+  cursor: pointer;
+  color: var(--cv-main);
+}
+
+.cv-top-buttons div:hover {
+  background-color: var(--cv-accent); /* slightly transparent hover */
 }
 
 .cv-container {
-    height: 100%;
-    width: 70%;
-    background-color: #0d1033;
+
     display:grid;
     justify-content: center;
     grid-template-columns: 30% 70%;
+    position:relative;
+    color: var(--cv-secondary);
+}
+
+.footer {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-weight: 100;
 }
 
 .cv-left {
-    background-color:rgb(54, 27, 54) ;
+    background-color:var(--cv-bg-left) ;
     height: 100%;
+    position:relative;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.cv-right {
+    background-color:var(--cv-bg-right) ;
+    height: 100%;
+    position:relative;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .cv-left h2 {
     display: flex;
     align-items: center;
+    color: var(--cv-main);
+    justify-content: left;
 }
 
 .cv-right h1 {
@@ -28,24 +120,17 @@ h1 {
     align-items: center;
 }
 
-.cv-left h2::after {
-    content: '';
-    flex-grow: 1;          /* fills remaining space */
-    height: 2px;
-    background: #ccc;
-    margin-left: 10px;     /* space between text and line */
-}
 
 .cv-right h1::after {
     content: '';
     flex-grow: 1;          /* fills remaining space */
     height: 2px;
-    background: #ccc;
+    background: var(--cv-main);
     margin-left: 10px;     /* space between text and line */
 }
 
 .cv-about-me {
-    text-align: justify;
+    margin-top: 2%;
 }
 
 .cv-contacts-wrapper {
@@ -72,12 +157,15 @@ h1 {
     padding:0;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;  /* optional spacing */
-    margin-right: 90px;
+    color: var(--cv-main);
 }
 
-.cv-languages-container {
-    text-align: left;
+
+.cv-languages-wrapper ul li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--cv-main)
 }
 
 .cv-languages-wrapper {
@@ -90,21 +178,15 @@ h1 {
     padding: 0;   
 }
 
-.cv-extra-container ul {
-    list-style: none;   
-    margin: 0;          
-    padding: 0;
-}
-
 .cv-extra-container {
     text-align: left;
-    margin: 0 20px;
+    margin: 0 0;
 }
 
 .cv-contacts-container a{
     text-decoration: none;
     text-align: left;
-    color:white;
+    color: var(--cv-main);
 }
 
 .cv-contacts-container span {
@@ -112,6 +194,7 @@ h1 {
 }
 
 .profile-pic-cv {
+    padding-top: 30px;
     width:200px;
     height:200px;
     border-radius: 50%;
@@ -124,5 +207,9 @@ h1 {
 }
 
 .cv-education-item h2 {
-    font-weight: bold;
+    font-weight: var(--cv-font-bold);
+}
+
+.cv-extra-wrapper {
+    margin-bottom: 5%;
 }
