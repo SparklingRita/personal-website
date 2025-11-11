@@ -50,7 +50,7 @@ export default function CVDocument() {
             <View style={{alignItems:'center'}}>
                 <Image
                     style={styles.image}
-                    src="../public/profile.jpg"
+                    src="/profile.jpg"
                 />
                 {/* --- NAME SECTION --- */}
                 <View style={styles.section}>
