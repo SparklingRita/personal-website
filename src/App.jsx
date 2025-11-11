@@ -5,6 +5,9 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import CV from './pages/CV';
 import { useState } from 'react';
+import { Buffer } from 'buffer';
+
+window.Buffer = Buffer; 
 
 function shiftHue(hex, degree = 40) {
   // Remove "#" if present

@@ -14,9 +14,9 @@ const imgSize = '130';
 Font.register({
   family: 'Roboto',
   fonts: [
-    { src: '../public/fonts/Roboto-Bold.ttf', fontWeight: 700 }, // Bold
-    { src: '../public/fonts/Roboto-Regular.ttf', fontWeight: 400 }, // Bold
-    { src: '../public/fonts/Roboto-Light.ttf', fontWeight: 100 }, // Thin
+    { src: '/fonts/Roboto-Bold.ttf', fontWeight: 700 }, // Bold
+    { src: '/fonts/Roboto-Regular.ttf', fontWeight: 400 }, // Bold
+    { src: '/fonts/Roboto-Light.ttf', fontWeight: 100 }, // Thin
   ],
 });
 
@@ -235,7 +235,7 @@ export default function CVDocument() {
                         
                         {e.description.map((p, i) => (
                             <Text key={i} style={styles.description}>
-                                •{p.text}
+                                • {p.text}
                             </Text>
                         ))}
                     </View>

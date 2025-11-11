@@ -1,11 +1,11 @@
 @font-face {
   font-family: RobotoBold; /* set name */
-  src: url(../public/fonts/Roboto-Bold.ttf); /* url of the font */
+  src: url(/fonts/Roboto-Bold.ttf); /* url of the font */
 }
 
 @font-face {
   font-family: Roboto; /* set name */
-  src: url(../public/fonts/Roboto-Regular.ttf); /* url of the font */
+  src: url(/fonts/Roboto-Regular.ttf); /* url of the font */
 }
 
 .profile-pic-hero {
