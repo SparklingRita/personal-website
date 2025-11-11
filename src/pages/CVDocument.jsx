@@ -198,9 +198,13 @@ export default function CVDocument() {
                     <Text style={styles.title}>About Me</Text>
                     <View style={styles.line}/>
                 </View>
-                <Text style={{textAlign:'left',marginBottom: 10}}>
-                    {cvData.aboutMe}
-                </Text>
+                <View>
+                    {cvData.aboutMe.map((a, i) => (
+                        <Text key={i} style={styles.description}>
+                            {a}
+                        </Text>
+                    ))}
+                </View>
             </View>
 
             {/*Education Section*/}
@@ -231,7 +235,7 @@ export default function CVDocument() {
                         
                         {e.description.map((p, i) => (
                             <Text key={i} style={styles.description}>
-                                {p}
+                                •{p.text}
                             </Text>
                         ))}
                     </View>
@@ -262,7 +266,11 @@ export default function CVDocument() {
                             />
                             <Text>{e.location}</Text>
                         </View>
-                    <Text style={styles.description}>{e.description}</Text>
+                    {e.description.map((p, i) => (
+                        <Text key={i} style={styles.description}>
+                            {p.text}
+                        </Text>
+                    ))}
                 </View>
               </View>
             ))}

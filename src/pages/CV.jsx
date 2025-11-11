@@ -107,8 +107,12 @@ function Languages() {
 
 function AboutMe(){
     return (
-        <div style={{textAlign:'justify', margin:'10px 20px', color:'var(----cv-secondary)'}}>
-            {cvData.aboutMe}
+        <div style={{textAlign:'justify', margin:'10px 20px',color:'var(----cv-secondary)'}}>
+           <ul style={{listStyle:'none', margin:0, padding:0}}> 
+            {cvData.aboutMe.map((a,i)=>(
+                    <li key={i}>{a}</li>
+                ))}
+            </ul>
         </div>
     )
 }
@@ -119,7 +123,7 @@ function Extra() {
             <ul>
                 {
                     cvData.extra.map((e,i) => (
-                        <li>{e}</li>
+                        <li key={i}>{e}</li>
                     ))
                 }
             </ul>
@@ -127,7 +131,7 @@ function Extra() {
     )
 }
 
-function Entry( {date, location, title, description} ){
+function Entry( {date, location, title, description, bullets = true} ){
     return(
         <div className='cv-entry-item'>
             <h2>
@@ -145,9 +149,22 @@ function Entry( {date, location, title, description} ){
                     {location}  
                 </span>
             </div>
-            <p>
-                {description}
-            </p>
+            <div style={{ marginTop: '5px' }}>
+            <ul style={{ paddingLeft: '20px', margin: 0, listStyleType: bullets ? 'disc' : 'none'}}>
+                {description.map((desc, j) =>
+                desc.link ? (
+                    <li key={j}>
+                    <a href={desc.link} target="_blank" rel="noopener noreferrer">
+                        {desc.text}
+                    </a>
+                    </li>
+                ) : (
+                    <li key={j}>{desc.text}</li>
+                )
+                )}
+            </ul>
+            </div>
+
         </div>    
     )
 
@@ -213,7 +230,7 @@ export default function CV() {
                     <h1>Education</h1>
                     {
                         cvData.education.map((e,i)=>(
-                            <div>
+                            <div key={i}>
                                 <Entry date={e.date} location={e.location} title={e.title} description={e.description} />
                             </div>
                         ))
@@ -223,8 +240,8 @@ export default function CV() {
                     <h1>Experience</h1>
                     {
                         cvData.experience.map((e, i) => (
-                            <div>
-                                <Entry date={e.date} location={e.location} title={e.title} description={e.description}/>
+                            <div key={i} style={{listStyle:'none'}}>
+                                <Entry date={e.date} location={e.location} title={e.title} description={e.description} bullets={false}/>
                             </div>
                         ))
                     }
