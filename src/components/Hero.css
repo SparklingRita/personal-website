@@ -1,0 +1,136 @@
+@font-face {
+  font-family: RobotoBold; /* set name */
+  src: url(../assets/fonts/Roboto-Bold.ttf); /* url of the font */
+}
+
+@font-face {
+  font-family: Roboto; /* set name */
+  src: url(../assets/fonts/Roboto-Regular.ttf); /* url of the font */
+}
+
+.profile-pic-hero {
+    width: 80%;              
+    aspect-ratio: 1 / 1;     /* always keeps it square */
+    object-fit: cover;
+    flex-shrink: 0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.profile-pic-hero:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 45px rgba(255, 255, 255, 0.315);
+}
+
+.page {
+    width: 50vw;
+    height: 60vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.073);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(15px);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width:100%;
+}
+
+.container-text {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 5%;
+}
+
+.container-pic-contacts {
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacts-wrapper {
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    width: 40px;               /* start as circle */
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    overflow: hidden;          /* hide label until hover */
+    transition: all 0.5s ease;
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;            
+  color:white;
+}
+
+.contact-label {
+    font-size: 12px;
+    display:flex;
+    align-items: center;
+    height:100%;
+    white-space: nowrap;
+    opacity: 0;
+    transition: max-width 0.4s ease, opacity 0.4s ease;
+    color:white;
+    font-family: Roboto;
+}
+
+.contact-item:hover {
+    width: auto;              /* expand to fit label */
+    padding-right: 0.5rem;        /* give space for label */
+    border-radius: 25px;      /* pill shape */
+    text-shadow: 0 0 5px white;
+}
+
+.contact-item:hover .contact-label {
+    opacity: 1;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-family: RobotoBold;
+    text-align: left;
+}
+
+.Rita {
+    transition: all 0.3s ease;
+}
+
+.title .Rita:hover {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.282);
+}
+
+.text {
+    max-width: 600px;
+    color: white;
+    text-align: justify;
+    font-family: Roboto;
+}
+
+
+
+

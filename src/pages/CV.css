@@ -1,0 +1,128 @@
+h1 {
+    font-size: 2em;  /* 50% larger than normal text */
+    font-weight: bold;
+    margin: 20px 20px;          /* optional: remove default spacing */
+}
+
+.container {
+    height: 100%;
+    width: 70%;
+    background-color: #0d1033;
+    display:grid;
+    justify-content: center;
+    grid-template-columns: 30% 70%;
+}
+
+.left {
+    background-color:rgb(54, 27, 54) ;
+    height: 100%;
+}
+
+.left h2 {
+    display: flex;
+    align-items: center;
+}
+
+.right h1 {
+    display: flex;
+    align-items: center;
+}
+
+.left h2::after {
+    content: '';
+    flex-grow: 1;          /* fills remaining space */
+    height: 2px;
+    background: #ccc;
+    margin-left: 10px;     /* space between text and line */
+}
+
+.right h1::after {
+    content: '';
+    flex-grow: 1;          /* fills remaining space */
+    height: 2px;
+    background: #ccc;
+    margin-left: 10px;     /* space between text and line */
+}
+
+.about-me {
+    text-align: justify;
+}
+
+.cv-contacts-wrapper {
+    margin: 0 20px;
+}
+
+.skills-wrapper {
+    margin: 0 20px;
+}
+
+.skills-container {
+    text-align: left;
+}
+
+.skills-container ul {
+    list-style: none;   
+    margin: 0;          
+    padding: 0;        
+}
+
+.skills-container li {
+    display: flex;
+    margin:0;
+    padding:0;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;  /* optional spacing */
+    margin-right: 90px;
+}
+
+.languages-container {
+    text-align: left;
+}
+
+.languages-wrapper {
+    margin: 0 20px;
+}
+
+.languages-wrapper ul {
+    list-style: none;   
+    margin: 0;          
+    padding: 0;   
+}
+
+.extra-container ul {
+    list-style: none;   
+    margin: 0;          
+    padding: 0;
+}
+
+.extra-container {
+    text-align: left;
+    margin: 0 20px;
+}
+
+.cv-contacts-container a{
+    text-decoration: none;
+    text-align: left;
+    color:white;
+}
+
+.cv-contacts-container span {
+    padding-left: 10px;
+}
+
+.profile-pic-cv {
+    width:200px;
+    height:200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.entry-item {
+    text-align: left;
+    padding: 0 20px;
+}
+
+.education-item h2 {
+    font-weight: bold;
+}
