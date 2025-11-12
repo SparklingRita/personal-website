@@ -243,7 +243,7 @@ export default function CV() {
             </PDFDownloadLink>
           </>
           <a
-            href="https://github.com/SparklingRita/personal-website/tree/main/src/pages"
+            href="https://github.com/SparklingRita/personal-website"
             target="_blank"
             rel="noopener noreferrer"
           >
