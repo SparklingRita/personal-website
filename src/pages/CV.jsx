@@ -3,11 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope, faGlobe } from '@fortawesome/free-solid-svg-icons'
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faCalendar, faLocationDot, faDownload } from '@fortawesome/free-solid-svg-icons';
-import { ProfilePic } from '../components/Hero'
+
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import CVDocument from './CVDocument';
 import { cvData } from './cvData';
 import { href } from 'react-router-dom';
+
+const ProfilePic = () => {
+    return (
+        <div style={{paddingTop:'20px'}}>
+            <img src='profile-1.3.10.jpg' className='profile-pic-cv' />
+        </div>
+    )
+}
 
 
 function CVContacts() {
@@ -195,7 +203,7 @@ export default function CV() {
         
         <div className='cv-container'>
             <div className='cv-left'>
-                <ProfilePic className={'profile-pic-cv'}/>
+                <ProfilePic/>
                 <div>
                     <h2 style={{justifyContent:'center', marginBottom:'0px', marginTop:0, paddingTop:0}}>{cvData.name}</h2>
                     <div style={{gap:'3px', display:'inline-block', marginBottom:'10px'}}>

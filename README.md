@@ -1,16 +1,19 @@
-# React + Vite
+# ✨ Personal Website using React and Vite
+Check it out live 👉[ritacmendes.com](https://www.ritacmendes.com)!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This website serves as my personal hub, a place to showcase my fun side projects, experiments and creative ideas.
 
-Currently, two official plugins are available:
+**Disclaimer:** It's still a work in progress, especially regarding responsiveness across all screen sizes (bear with me :')).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🌈 Rainbow Button
+Try it out in the Navbar!
 
-## React Compiler
+I couldn't decide on a background color, so I made it interactive: using a color picker slider component from [`react-color` library](https://casesandberg.github.io/react-color/), users can pick their own background shade.
+There is also a function that dynamically shifts the hue to create a subtle gradient effect.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📄 CV Page
+This page is entirely rendered using HTML, and dynamically populated from a single `.js` file that keeps all information organized and easy to maintain.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+For the Download PDF feature, I used the [`react-pdf` library](https://react-pdf.org/). This allows the same structured `.js` data into an interactive, downloadable PDF.
+

@@ -194,11 +194,11 @@ h2 {
 }
 
 .profile-pic-cv {
-    padding-top: 30px;
+    
     width:200px;
     height:200px;
     border-radius: 50%;
-    object-fit: cover;
+    
 }
 
 .cv-entry-item {
