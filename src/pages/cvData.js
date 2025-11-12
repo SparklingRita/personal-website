@@ -47,7 +47,7 @@ export const cvData = {
   education: [
     {
       title: "Bachelor's in Electrical and Computer Engineering",
-      date: '2020–2023',
+      date: '2020-2023',
       location: 'Instituto Superior Técnico, Lisbon, Portugal',
       description: [
           {
@@ -58,7 +58,7 @@ export const cvData = {
     },
     {
         title: "Erasmus Programme",
-        date: "2024-2025, 1st semester",
+        date: '2024-2025, 1st semester',
         location: "KTH Royal Institute of Technology, Stockholm, Sweden",
         description: [
           {
@@ -67,7 +67,7 @@ export const cvData = {
         ],
     },
     {
-        date:"2023-2025",
+        date:'2023-2025',
         location:"Instituto Superior Técnico, Lisbon, Portugal",
         title:"Master's in Control, Robotics and Artificial Intelligence",
         description: [
