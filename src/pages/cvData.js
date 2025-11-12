@@ -15,8 +15,8 @@ export const cvData = {
     emailLink: 'mailto:me@ritacmendes.com',
     github: 'SparklingRita',
     githubLink: 'https://github.com/SparklingRita',
-    linkedin: 'RitaMendes',
-    linkedinLink: 'https://linkedin.com',
+    linkedin: 'Rita Mendes',
+    linkedinLink: 'https://linkedin.com/in/rita-c-mendes',
   },
   skills: {
     programming: [
