@@ -42,7 +42,7 @@ export const cvData = {
 
   aboutMe: [
     "Master in Electrical and Computer Engineering at Instituto Superior Técnico, specializing in Control, Robotics, and AI. My main professional interest lies in Machine Learning and Web Development, and I'm eager to continue learning and growing in these fields.",
-    "Beyond engineering, I am a hybrid athlete and have a strong passion for the arts, including traditional drawing, playing guitar and also video editing, with extensive experience in Adobe Photoshop, Lightroom, Premiere Pro, and DaVinci Resolve.",
+    "Beyond engineering, I am a hybrid athlete and have a strong passion for the arts, including traditional drawing, playing guitar and also video editing, with extensive experience using the Adobe Suite.",
   ],
   education: [
     {
