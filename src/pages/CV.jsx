@@ -16,7 +16,7 @@ import { href } from "react-router-dom";
 const ProfilePic = () => {
   return (
     <div style={{ paddingTop: "20px" }}>
-      <img src="profile-1.3.10.jpg" className="profile-pic-cv" />
+      <img src="profile-CV.jpg" className="profile-pic-cv" />
     </div>
   );
 };

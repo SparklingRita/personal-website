@@ -104,7 +104,7 @@ export default function CVDocument() {
       <Page size="B5" style={styles.page}>
         <View style={styles.left}>
           <View style={{ alignItems: "center" }}>
-            <Image style={styles.image} src="/profile-1.3.4.jpg" />
+            <Image style={styles.image} src="/profile-CV.jpg" />
             {/* --- NAME SECTION --- */}
             <View style={styles.section}>
               <Text

@@ -14,7 +14,10 @@ I couldn't decide on a background color, so I made it interactive: using a color
 There is also a function that dynamically shifts the hue to create a subtle gradient effect.
 
 ## 📄 CV Page
+For the source code, check the `src/pages` folder!
 
-This page is entirely rendered using HTML, and dynamically populated from a single `.js` file that keeps all information organized and easy to maintain.
+This page is fully rendered using HTML, and dynamically populated from a single `.js` file that keeps all information organized and easy to maintain.
 
-For the Download PDF feature, I used the [`react-pdf` library](https://react-pdf.org/). This allows the same structured `.js` data into an interactive, downloadable PDF.
+For the **Download PDF** feature, I used the [`react-pdf` library](https://react-pdf.org/). With the same structured `.js` data, I built a separate file ([`CVDocument.jsx](https://github.com/SparklingRita/personal-website/blob/main/src/pages/CVDocument.jsx)) that uses `react-pdf` components to generate an interactive, downloadable PDF version of the CV.
+
+To properly render FontAwesome icons within the PDF, I also created a custom wrapper component that renders icons as `react-pdf <Svg>` elements ([`FontAwesomeIcon.jsx](https://github.com/SparklingRita/personal-website/blob/main/src/pages/FontAwesomeIcon.jsx)).
