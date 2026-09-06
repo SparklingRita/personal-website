@@ -6,6 +6,7 @@ import {
   faCalendar,
   faLocationDot,
   faDownload,
+  faFileCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { PDFDownloadLink } from "@react-pdf/renderer";
@@ -151,6 +152,19 @@ function Languages() {
   );
 }
 
+function Interests() {
+  const { interests } = cvData;
+  return (
+    <ul>
+      {interests. map((interest,i) => (
+        <li key={i}>
+          <span>{interest.name}</span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 function AboutMe() {
   return (
     <div
@@ -181,45 +195,108 @@ function Extra() {
   );
 }
 
-function Entry({ date, location, title, description, bullets = true }) {
+function Entry({ date, location, link, title, subtitle, description, venue, pdf, bullets = true }) {
   return (
     <div className="cv-entry-item">
-      <h2>{title}</h2>
-      <div>
-        <FontAwesomeIcon
-          style={{ color: "var(--cv-accent)" }}
-          icon={faCalendar}
-        />
-        <span style={{ color: "var(--cv-main)" }}>{date}</span>
-      </div>
-      <div>
-        <FontAwesomeIcon
-          style={{ color: "var(--cv-accent)" }}
-          icon={faLocationDot}
-        />
-        <span style={{ color: "var(--cv-main)" }}>{location}</span>
-      </div>
-      <div style={{ marginTop: "5px" }}>
-        <ul
-          style={{
-            paddingLeft: "20px",
-            margin: 0,
-            listStyleType: bullets ? "disc" : "none",
-          }}
+      <h2>
+        {link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "inherit",
+              textDecoration: "underline",
+              textDecorationStyle: "dotted",
+              textUnderlineOffset: "3px",
+            }}
+          >
+            {title}
+          </a>
+        ) : (
+          title
+        )}
+      </h2>
+
+      { subtitle && (
+        <div>
+          <span style={{ color: "var(--cv-main)" }}>{subtitle}</span>
+        </div>
+      )}
+
+      {date && (
+        <div>
+          <FontAwesomeIcon
+            style={{ color: "var(--cv-accent)" }}
+            icon={faCalendar}
+          />
+          <span style={{ color: "var(--cv-main)" }}>{date}</span>
+        </div>
+      )}
+
+      {location && (
+        <div>
+          <FontAwesomeIcon
+            style={{ color: "var(--cv-accent)" }}
+            icon={faLocationDot}
+          />
+          <span style={{ color: "var(--cv-main)" }}>{location}</span>
+        </div>
+      )}
+
+      {pdf && (
+        <a
+          href={pdf}
+          download
+          className="paper-download"
         >
-          {description.map((desc, j) =>
-            desc.link ? (
+          <FontAwesomeIcon icon={faDownload} />
+          Download PDF
+        </a>
+      )}
+
+      {venue && (
+        <div>
+          <FontAwesomeIcon
+            style={{ color: "var(--cv-accent)" }}
+            icon={faFileCircleCheck}
+          />
+          <span style={{ color: "var(--cv-main)" }}>{venue}</span>
+        </div>
+      )}
+
+      { description && (
+        <div style={{ marginTop: "5px" }}>
+          <ul
+            style={{
+              paddingLeft: "20px",
+              margin: 0,
+              listStyleType: bullets ? "disc" : "none",
+            }}
+          >
+            {description.map((desc, j) => (
               <li key={j}>
-                <a href={desc.link} target="_blank" rel="noopener noreferrer">
-                  {desc.text}
-                </a>
+                {desc.parts
+                  ? desc.parts.map((part, k) =>
+                      part.link ? (
+                        <a
+                          key={k}
+                          href={part.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {part.text}
+                        </a>
+                      ) : (
+                        part.text
+                      )
+                    )
+                  : desc.text}
               </li>
-            ) : (
-              <li key={j}>{desc.text}</li>
-            )
-          )}
-        </ul>
-      </div>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
@@ -243,7 +320,7 @@ export default function CV() {
             </PDFDownloadLink>
           </>
           <a
-            href="https://github.com/SparklingRita/personal-website"
+            href="https://github.com/ritacmendes/personal-website"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -294,6 +371,10 @@ export default function CV() {
               <h2>Languages</h2>
               <Languages />
             </div>
+            <div className="cv-languages-wrapper">
+              <h2>Personal Interests</h2>
+              <Interests />
+            </div>
 
             <div className="footer">
               Last updated in {cvData.lastUpdated.month}{" "}
@@ -332,12 +413,74 @@ export default function CV() {
                 </div>
               ))}
             </div>
-            <div className="cv-extra-wrapper">
-              <h1>Extra</h1>
-              <Extra />
+            {/*
+              <div className="cv-experience-wrapper">
+                <h1>Conferences</h1>
+                {cvData.conferences.map((e, i) => (
+                  <div key={i} style={{ listStyle: "none" }}>
+                    <Entry
+                      date={e.date}
+                      location={e.location}
+                      link={e.link}
+                      title={e.title}
+                      description={e.description}
+                      bullets={false}
+                    />
+                  </div>
+                ))}
+              </div>
+            */}
+
+            <div className="cv-experience-wrapper">
+              <h1>Publications</h1>
+              {cvData.papers.map((e, i) => (
+                <div key={i} style={{ listStyle: "none" }}>
+                  <Entry
+                    date={e.date}
+                    subtitle = {e.subtitle}
+                    venue={e.venue}
+                    pdf = {e.pdf}
+                    location={e.location}
+                    title={e.title}
+                    bullets={false}
+                  />
+                </div>
+              ))}
             </div>
+
+            <div className="cv-experience-wrapper">
+              <h1>Personal Projects</h1>
+              {cvData.projects.map((e, i) => (
+                <div key={i} style={{ listStyle: "none" }}>
+                  <Entry
+                    link = {e.link}
+                    date={e.date}
+                    venue={e.venue}
+                    pdf = {e.pdf}
+                    subtitle = {e.subtitle}
+                    location={e.location}
+                    title={e.title}
+                    description={e.description}
+                    bullets={false}
+                  />
+                </div>
+              ))}
+            </div>
+            
+            {/*
+              <div>
+                <h1>Extra</h1>
+                <Extra />
+              </div>
+            */}
+            <div style={{ marginBottom: "5%" }}></div>
           </div>
         </div>
+        
+        <div style={{ paddingTop: "20px", color: "var(--cv-secondary)", fontWeight: "100" }}>
+          This webpage contains my Curriculum Vitae, built with JSX components and rendered as HTML. This approach makes it easy to maintain and scale as my experience and projects evolve. Feel free to download my CV as a PDF or explore the source code on GitHub.
+        </div>
+
       </div>
     </>
   );

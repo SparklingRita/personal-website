@@ -14,8 +14,10 @@ import {
   faGlobe,
   faCalendar,
   faLocationDot,
+  faFileCircleCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+
 import FontAwesomeIcon from "./FontAwesomeIcon";
 
 const leftColor = "#585c71ff";
@@ -56,16 +58,16 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: rightColor,
   },
-  section: { marginBottom: 10 },
-  title: { fontSize: 18, fontWeight: 700, marginBottom: 2, color: titleColor },
-  subtitle: { fontSize: 14, marginBottom: 2, color: titleColor },
+  section: { marginBottom: 5 },
+  title: { fontSize: 18, fontWeight: 700, marginBottom: 1, color: titleColor },
+  subtitle: { fontSize: 14, marginBottom: 1, color: titleColor },
   subtitleBold: {
     fontSize: 14,
     marginBottom: 2,
     fontWeight: 700,
     color: titleColor,
   },
-  entry: { marginBottom: 20, color: titleColor },
+  entry: { marginBottom: 10, color: titleColor },
   contactEntry: {
     flexDirection: "row",
     alignItems: "center",
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
 export default function CVDocument() {
   return (
     <Document>
-      <Page size="B5" style={styles.page}>
+      <Page size="A4" style={styles.page}>
         <View style={styles.left}>
           <View style={{ alignItems: "center" }}>
             <Image style={styles.image} src="/profile-CV.jpg" />
@@ -248,6 +250,22 @@ export default function CVDocument() {
             ))}
           </View>
 
+          <View style={styles.section}>
+            <Text style={styles.subtitleBold}>Personal Interests</Text>
+            {cvData.interests.map((interest) => (
+              <View
+                key={interest.name}
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  marginBottom: 3,
+                }}
+              >
+                <Text style={{ color: titleColor }}>{interest.name}</Text>
+              </View>
+            ))}
+          </View>
+
           <View style={{ position: "absolute", bottom: 10, left: 0, right: 0 }}>
             <Text
               style={{
@@ -311,7 +329,8 @@ export default function CVDocument() {
               </View>
             ))}
           </View>
-
+          
+          {/*Experience Section*/}
           <View style={styles.section}>
             <View style={styles.titleLine}>
               <Text style={styles.title}>Experience</Text>
@@ -333,26 +352,113 @@ export default function CVDocument() {
                     <Text>{e.location}</Text>
                   </View>
                   {e.description.map((p, i) => (
-                    <Text key={i} style={styles.description}>
-                      {p.text}
-                    </Text>
-                  ))}
+                  <Text key={i} style={styles.description}>
+                    {p.parts
+                      ? p.parts.map((part, j) =>
+                          part.link ? (
+                            <Link key={j} src={part.link} style={styles.description}>
+                              {part.text}
+                            </Link>
+                          ) : (
+                            part.text
+                          )
+                        )
+                      : p.text}
+                  </Text>
+                ))}
                 </View>
               </View>
             ))}
           </View>
 
+          {/* Publications Section */}
           <View style={styles.section}>
             <View style={styles.titleLine}>
-              <Text style={styles.title}>Extra</Text>
+              <Text style={styles.title}>Publications</Text>
               <View style={styles.line} />
             </View>
-            {cvData.extra.map((item) => (
-              <Text style={{ marginBottom: 2 }} key={item}>
-                • {item}
-              </Text>
+
+            {cvData.papers.map((e) => (
+              <View key={e.title} style={styles.entry}>
+                <Text style={styles.subtitle}>{e.title}</Text>
+
+                <View>
+                  <View style={styles.educationEntry}>
+                    <FontAwesomeIcon
+                      faIcon={faCalendar}
+                      style={styles.icon}
+                    />
+                    <Text>{e.date}</Text>
+                  </View>
+
+                  <View style={styles.educationEntry}>
+                    <FontAwesomeIcon
+                      faIcon={faFileCircleCheck}
+                      style={styles.icon}
+                    />
+                    <Text>
+                      Accepted for presentation at{' '}
+                      {e.venueLink ? (
+                        <Link src={e.venueLink} style={styles.description}>
+                          {e.venue}
+                        </Link>
+                      ) : (
+                        e.venue
+                      )}
+                    </Text>
+                  </View>
+                </View>
+              </View>
             ))}
           </View>
+
+          {/*Personal Projects Section */}
+          <View style={styles.section}>
+            <View style={styles.titleLine}>
+              <Text style={styles.title}>Personal Projects</Text>
+              <View style={styles.line} />
+            </View>
+          </View>
+          
+            {cvData.projects.map((e) => (
+              <View key={e.title} style={styles.entry}>
+                <Text style={styles.subtitle}>
+                  {e.link ? (
+                    <Link src={e.link} style={styles.title}>
+                      {e.title}
+                    </Link>
+                  ) : (
+                    e.title
+                  )}
+                </Text>
+
+                {e.subtitle && (
+                  <Text style={styles.h3}>
+                    {e.subtitle}
+                  </Text>
+                )}
+
+                {e.description.map((p, i) => (
+                  <Text key={i} style={styles.description}>
+                    {p.text}
+                  </Text>
+                ))}
+              </View>
+            ))}
+           
+          {/*
+            <View style={styles.section}>
+              <View style={styles.titleLine}>
+                <Text style={styles.title}>Extra</Text>
+                <View style={styles.line} />
+              </View>
+              {cvData.extra.map((item) => (
+                <Text style={{ marginBottom: 2 }} key={item}>
+                  • {item}
+                </Text>
+              ))}
+            </View>
+          */}
         </View>
       </Page>
     </Document>
